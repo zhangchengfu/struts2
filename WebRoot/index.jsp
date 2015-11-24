@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <h1>用户登录</h1>
+    <h1 style="color: blue">用户登录</h1>
     <s:form namespace="/user" action="login">
     	Username:<s:textfield name="user.name"></s:textfield>
     	<br/>
