@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- 启用Annotation配置风格 -->
+   <context:annotation-config/>
+   <context:component-scan base-package="com.laozhang.struts2" />
+           
+	<!-- step 1 : dataSource -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/spring"/>
+		<property name="username" value="root"/>
+		<property name="password" value="123"/>
+		定义初始化连接的数量:20个
+		<property name="initialSize" value="20"/>
+	</bean>	 -->
+	
+	<!-- step 2 :  -->
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		设置dataSource
+		<property name="dataSource" ref="dataSource"/>
+		设置 hibernate 属性
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		设置需要扫描的实体类所在包
+		<property name="packagesToScan">
+			<list>
+				<value>com.tz.struts.entity</value>
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- step 3 : transactionManager -->
+	<!-- <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> -->
+	
+	<!-- 启用annotation风格的声明式事务 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+	
+           
+</beans>   
+
+
+
+
+
+
+
+        
