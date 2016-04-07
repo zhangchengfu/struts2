@@ -12,7 +12,6 @@ public class BaseServiceImpl implements BaseService {
 
 	protected BaseDao baseDao;
 
-	@Override
 	public void setBaseDao(BaseDao baseDao) {
 		this.baseDao = baseDao;
 	}
