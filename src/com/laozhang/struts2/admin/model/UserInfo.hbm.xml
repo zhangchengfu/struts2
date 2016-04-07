@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+	<class name="com.laozhang.struts2.admin.model.UserInfo" table="USER_INFO">
+		<id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="java.lang.String" column="USER_ID"
+			length="20" />
+
+		<property name="password" type="java.lang.String" column="PASSWORD"
+			length="100" />
+		
+		<property name="name" type="java.lang.String" column="NAME"
+			length="80" />
+		
+		<property name="sex" type="java.lang.String" column="SEX"
+			length="1" />
+			
+		<property name="tel" type="java.lang.String" column="TEL"
+			length="20" />
+			
+		<property name="email" type="java.lang.String" column="EMAIL"
+			length="100" />
+		
+		<property name="orgId" type="java.lang.String" column="ORG_ID"
+			length="12" />
+			
+		<property name="orgType" type="java.lang.String" column="ORG_TYPE"
+			length="1" />
+			
+		<property name="recsts" type="java.lang.String" column="RECSTS"
+			length="1" />
+			
+		<property name="lastTime" type="java.sql.Timestamp" column="LAST_TIME" />
+	</class>
+</hibernate-mapping>
