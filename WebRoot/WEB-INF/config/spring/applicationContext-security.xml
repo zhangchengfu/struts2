@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 
+	<http pattern="/index.jsp" security="none" /> 
+ 
+ 	<!-- access-denied-page 无权限访问所跳转的页面 -->
+ 	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
+ 		
+ 		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
+ 		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+ 		
+ 	</http>
+ 	
+ 	<!-- 未登录的切入点 -->
+ 	<beans:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+ 		<beans:property name="loginFormUrl" value="/index.jsp" />
+ 	</beans:bean>
+ 	
+ 	<!-- 登录验证器 -->
+ 	<beans:bean id="loginFilter" class="com.laozhang.struts2.security.MyUsernamePasswordAuthenticationFilter">
+ 		<beans:property name="filterProcessesUrl" value="/j_spring_security_check"></beans:property>
+ 		<beans:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"></beans:property>
+ 		<beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"></beans:property>
+ 		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
+ 		
+ 		
+ 	</beans:bean>
+ 	
+ 	<beans:bean id="loginLogAuthenticationSuccessHandler"
+ 			class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+ 		<beans:property name="defaultTargetUrl" value="/welcome.jsp"></beans:property>
+ 	</beans:bean>
+ 	
+ 	<beans:bean id="simpleUrlAuthenticationFailureHandler"
+ 			class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+ 		<beans:property name="defaultFailureUrl" value="/index.jsp"></beans:property>
+ 	</beans:bean>
+ 	
+ 	<!-- 认证过滤器 -->
+ 	<beans:bean id="securityFilter">
+ 		
+ 	</beans:bean>
+ 	
+ 	<!-- 实现了UserDetailsService的Bean -->
+ 	<authentication-manager alias="myAuthenticationManager" erase-credentials="false">
+ 		
+ 	</authentication-manager>
+ 
+</beans:beans>

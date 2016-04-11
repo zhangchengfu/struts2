@@ -23,10 +23,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <h1 style="color: blue">用户登录</h1>
-    <s:form namespace="/user" action="login">
-    	Username:<s:textfield name="user.name"></s:textfield>
+    <!-- <s:form namespace="/user" action="login"> -->
+    <s:form action="j_spring_security_check" method="post">
+    	Username:<!-- <s:textfield name="user.name"></s:textfield> -->
+    	<input type="text" name="username" id="username" class="table_input" tabindex="1"/>
     	<br/>
-    	Password:<s:password name="user.password"></s:password>
+    	Password:<!-- <s:password name="user.password"></s:password> -->
+    	<input name="password" id="password" type="password" class="table_input" tabindex="2"/>
     	<br/>
     	<s:submit value="登录"></s:submit>
     </s:form>

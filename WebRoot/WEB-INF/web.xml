@@ -6,8 +6,21 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>
   		/WEB-INF/config/spring/applicationContext-base.xml
+  		/WEB-INF/config/spring/applicationContext-dao.xml
+  		/WEB-INF/config/spring/applicationContext-security.xml
+  		/WEB-INF/config/spring/applicationContext-service.xml
   	</param-value>
   </context-param>
+  
+  <!-- 权限 -->
+  <filter>
+  	<filter-name>springSecurityFilterChain</filter-name>
+  	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
   <filter>
   	<filter-name>struts2</filter-name>
