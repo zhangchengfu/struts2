@@ -1,5 +1,6 @@
 package com.laozhang.struts2.security;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,8 +35,14 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		UserInfo user = userManageDao.findUserById(username);
-		
-		return null;
+		Collection<GrantedAuthority> grantAuths = obtionGrantedAuthorities(user);
+		boolean enables = true;
+		boolean accountNonExpired = true;
+		boolean credentialsNonExpired = true;
+		boolean accountNonLocked = true;
+		//封装成spring security的user
+		User userdetail = new User(user.getUserId(), user.getPassword(), enables, accountNonExpired, credentialsNonExpired, accountNonLocked, grantAuths); 
+		return userdetail;
 	}
 	
 	//取得用户的权限
@@ -43,7 +52,8 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
 		map.put("userId", user.getUserId());
 		List<RoleInfo> roles = userManageDao.getRoleListByUserId(map);
 		for (RoleInfo role : roles) {
+			set.add(new GrantedAuthorityImpl(role.getRoleDesc()));
 		}
-		return null;
+		return set;
 	}
 }
