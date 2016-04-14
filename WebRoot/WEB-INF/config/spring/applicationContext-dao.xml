@@ -40,5 +40,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
+	
+	<bean id="userManageDao" class="com.laozhang.struts2.admin.dao.impl.UserManageDaoImpl" />
      
 </beans>

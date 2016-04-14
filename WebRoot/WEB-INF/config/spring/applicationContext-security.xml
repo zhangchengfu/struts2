@@ -47,7 +47,14 @@
  	
  	<!-- 实现了UserDetailsService的Bean -->
  	<authentication-manager alias="myAuthenticationManager" erase-credentials="false">
- 		
+ 		<authentication-provider user-service-ref="myUserDetailServiceImpl">
+ 			<!-- 密码加密方式 -->
+ 			<password-encoder hash="md5" base64="true" />
+ 		</authentication-provider>
  	</authentication-manager>
+ 	
+ 	<beans:bean id="myUserDetailServiceImpl" class="com.laozhang.struts2.security.MyUserDetailServiceImpl">
+ 		<beans:property name="userManageDao" ref="userManageDao" />
+ 	</beans:bean>
  
 </beans:beans>
