@@ -45,13 +45,11 @@ public class MySecurityMetadataSource implements
 		}
 	}
 
-	@Override
 	public Collection<ConfigAttribute> getAllConfigAttributes() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object)
 			throws IllegalArgumentException {
 		String requestUrl = ((FilterInvocation) object).getRequestUrl();
@@ -66,7 +64,6 @@ public class MySecurityMetadataSource implements
 		}
 	}
 
-	@Override
 	public boolean supports(Class<?> arg0) {
 		// TODO Auto-generated method stub
 		return true;

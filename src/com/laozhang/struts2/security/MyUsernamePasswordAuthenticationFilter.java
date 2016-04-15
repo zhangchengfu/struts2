@@ -14,7 +14,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import sun.misc.BASE64Encoder;
+//import sun.misc.BASE64Encoder;
 
 import com.laozhang.struts2.admin.dao.UserManageDao;
 import com.laozhang.struts2.admin.model.UserInfo;
@@ -42,8 +42,9 @@ public class MyUsernamePasswordAuthenticationFilter extends
 		String pwdMD = "";
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			BASE64Encoder base64en = new BASE64Encoder();
-			pwdMD = base64en.encode(md5.digest(password.getBytes("UTF-8")));
+			//BASE64Encoder base64en = new BASE64Encoder();
+			//pwdMD = base64en.encode(md5.digest(password.getBytes("UTF-8")));
+			pwdMD = Base64.encode(md5.digest(password.getBytes("UTF-8"))).toString();
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

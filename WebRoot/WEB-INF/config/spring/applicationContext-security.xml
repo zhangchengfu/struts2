@@ -64,5 +64,9 @@
  	
  	<beans:bean id="myAccessDecisionManager" class="com.laozhang.struts2.security.MyAccessDecisionManager">
  	</beans:bean>
+ 	
+ 	<beans:bean id="mySecurityMetadataSource" class="com.laozhang.struts2.security.MySecurityMetadataSource">
+ 		<beans:constructor-arg name="userManageDao" ref="userManageDao"></beans:constructor-arg>
+ 	</beans:bean>
  
 </beans:beans>

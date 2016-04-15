@@ -12,7 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 public class MyAccessDecisionManager implements AccessDecisionManager {
 
-	@Override
 	public void decide(Authentication authentication, Object object,
 			Collection<ConfigAttribute> configAttributes) throws AccessDeniedException,
 			InsufficientAuthenticationException {
@@ -36,13 +35,11 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
 		throw new AccessDeniedException(" 没有权限访问！");
 	}
 
-	@Override
 	public boolean supports(ConfigAttribute arg0) {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
 	public boolean supports(Class<?> arg0) {
 		// TODO Auto-generated method stub
 		return true;
