@@ -11,4 +11,5 @@ public interface UserManageDao {
 	List<RoleInfo> getRoleListByUserId(Map<String, String> map);
 	boolean addUser(UserInfo userInfo);
 	UserInfo searchUserById(Long id);
+	List<RoleInfo> getAllRoleList();
 }

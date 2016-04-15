@@ -27,7 +27,7 @@
  		<beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"></beans:property>
  		<beans:property name="authenticationManager" ref="myAuthenticationManager"></beans:property>
  		
- 		
+ 		<beans:property name="userManageDao" ref="userManageDao"></beans:property>
  	</beans:bean>
  	
  	<beans:bean id="loginLogAuthenticationSuccessHandler"
@@ -41,8 +41,13 @@
  	</beans:bean>
  	
  	<!-- 认证过滤器 -->
- 	<beans:bean id="securityFilter">
- 		
+ 	<beans:bean id="securityFilter" class="com.seall.framework.security.MySecurityFilter">
+ 		<!-- 用户拥有的权限 -->
+    	<beans:property name="authenticationManager" ref="myAuthenticationManager" />
+    	<!-- 用户是否拥有所请求资源的权限 -->
+    	<beans:property name="accessDecisionManager" ref="myAccessDecisionManager" />
+    	<!-- 资源与权限对应关系 -->
+    	<beans:property name="securityMetadataSource" ref="mySecurityMetadataSource" />
  	</beans:bean>
  	
  	<!-- 实现了UserDetailsService的Bean -->
@@ -55,6 +60,9 @@
  	
  	<beans:bean id="myUserDetailServiceImpl" class="com.laozhang.struts2.security.MyUserDetailServiceImpl">
  		<beans:property name="userManageDao" ref="userManageDao" />
+ 	</beans:bean>
+ 	
+ 	<beans:bean id="myAccessDecisionManager" class="com.laozhang.struts2.security.MyAccessDecisionManager">
  	</beans:bean>
  
 </beans:beans>

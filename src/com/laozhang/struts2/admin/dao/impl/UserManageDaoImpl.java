@@ -18,6 +18,11 @@ public class UserManageDaoImpl extends BaseDaoImpl implements UserManageDao {
 	public List<RoleInfo> getRoleListByUserId(Map<String, String> map) {
 		return (List<RoleInfo>)findListByCombinedHsql("getRoleListByUserId", map);
 	}
+	
+	@Override
+	public List<RoleInfo> getAllRoleList() {
+		return getAllObject(RoleInfo.class);
+	}
 
 	public boolean addUser(UserInfo userInfo) {
 		try {
