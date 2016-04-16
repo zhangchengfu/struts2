@@ -19,6 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.laozhang.struts2.admin.dao.UserManageDao;
 import com.laozhang.struts2.admin.model.UserInfo;
 
+import sun.misc.BASE64Encoder;
+
 public class MyUsernamePasswordAuthenticationFilter extends
 		UsernamePasswordAuthenticationFilter {
 	
@@ -42,9 +44,9 @@ public class MyUsernamePasswordAuthenticationFilter extends
 		String pwdMD = "";
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
-			//BASE64Encoder base64en = new BASE64Encoder();
-			//pwdMD = base64en.encode(md5.digest(password.getBytes("UTF-8")));
-			pwdMD = Base64.encode(md5.digest(password.getBytes("UTF-8"))).toString();
+			BASE64Encoder base64en = new BASE64Encoder();
+			pwdMD = base64en.encode(md5.digest(password.getBytes("UTF-8")));
+			//pwdMD = Base64.encode(md5.digest(password.getBytes("UTF-8"))).toString();
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +57,7 @@ public class MyUsernamePasswordAuthenticationFilter extends
 		if (user == null) {
 			throw new AuthenticationServiceException("用户不存在！");
 		} else {
-			if (!pwdMD.equals(password)) {
+			if (!pwdMD.equals(user.getPassword())) {
 				throw new AuthenticationServiceException("密码不正确！");
 			}
 		}

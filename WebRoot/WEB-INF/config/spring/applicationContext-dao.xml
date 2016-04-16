@@ -9,12 +9,14 @@
      	<property name="dataSource"><ref bean="dataSource" /></property>
      	<property name="mappingResources">
      		<list>
-     			
+     			<value>com/laozhang/struts2/admin/model/RelUserRole.hbm.xml</value>
+     			<value>com/laozhang/struts2/admin/model/RoleInfo.hbm.xml</value>
+     			<value>com/laozhang/struts2/admin/model/UserInfo.hbm.xml</value>
      		</list>
      	</property>
      	<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
@@ -41,6 +43,6 @@
 		<property name="sqlMapClient" ref="sqlMapClient" />
 	</bean>
 	
-	<bean id="userManageDao" class="com.laozhang.struts2.admin.dao.impl.UserManageDaoImpl" />
+	<bean id="userManageDao" parent="baseDao" class="com.laozhang.struts2.admin.dao.impl.UserManageDaoImpl" />
      
 </beans>

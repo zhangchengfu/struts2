@@ -8,7 +8,7 @@
 	<!-- 使用简单主题模式 -->
 	<constant name="struts.ui.theme" value="simple"></constant>
 	
-	<package name="user" namespace="/user" extends="struts-default">
+	<!-- <package name="user" namespace="/user" extends="struts-default">
 		<action name="login" class="com.laozhang.struts2.action.UserAction" method="login">
 			<result name="success" type="redirectAction">list</result>
 			<result name="input" type="dispatcher">/login.jsp</result>
@@ -16,5 +16,7 @@
 		<action name="list" class="com.laozhang.struts2.action.UserAction" method="list">
 			<result name="success" type="dispatcher">/jsp/userList.jsp</result>
 		</action>
-	</package>
+	</package> -->
+	
+	<include file="/struts/struts-admin.xml"></include>
 </struts>

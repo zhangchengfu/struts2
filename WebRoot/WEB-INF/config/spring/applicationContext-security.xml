@@ -13,6 +13,7 @@
  		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
  		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
  		
+ 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
  	</http>
  	
  	<!-- 未登录的切入点 -->
@@ -41,7 +42,7 @@
  	</beans:bean>
  	
  	<!-- 认证过滤器 -->
- 	<beans:bean id="securityFilter" class="com.seall.framework.security.MySecurityFilter">
+ 	<beans:bean id="securityFilter" class="com.laozhang.struts2.security.MySecurityFilter">
  		<!-- 用户拥有的权限 -->
     	<beans:property name="authenticationManager" ref="myAuthenticationManager" />
     	<!-- 用户是否拥有所请求资源的权限 -->

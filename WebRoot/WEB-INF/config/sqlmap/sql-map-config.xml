@@ -4,17 +4,6 @@
         "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 
 <sqlMapConfig>
-	<!-- <sqlMap resource="com/seall/work/admin/model/sql-map-admin.xml" />
-	<sqlMap resource="com/seall/work/common/model/sql-map-common.xml" />
-	<sqlMap resource="com/seall/work/contract/model/sql-map-contract.xml" />
-	<sqlMap resource="com/seall/work/basicdata/model/sql-map-basicData.xml"/>
-	<sqlMap resource="com/seall/work/copInfo/model/sql-map-cop.xml"/>
-	<sqlMap resource="com/seall/work/basicdata/model/sql-map-amtAdjInfo.xml" />
-	<sqlMap resource="com/seall/work/negativeList/model/sql-map-negativeList.xml" />
-	<sqlMap resource="com/seall/work/search/model/sql-map-amtAdjRecordInfo.xml" />
-	<sqlMap resource="com/seall/work/question/model/sql-map-question.xml" />
-	<sqlMap resource="com/seall/work/message/model/sql-map-message.xml" />
-	<sqlMap resource="com/seall/work/statistical/model/sql-map-statistical.xml" /> -->
-	
+	<sqlMap resource="com/laozhang/struts2/admin/model/sql-map-admin.xml"/>
 </sqlMapConfig>
         
