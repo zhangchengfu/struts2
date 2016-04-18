@@ -23,5 +23,5 @@
         </tx:attributes>  
     </tx:advice>  
 	
-	
+	<bean id="userInfoService" class="com.laozhang.struts2.domain.service.impl.UserInfoServiceImpl" autowire="byName"></bean>
 </beans>

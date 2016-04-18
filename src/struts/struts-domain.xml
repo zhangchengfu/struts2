@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="domain" extends="struts-default" namespace="/domain">
+		<action name="enterSearch" class="userInfoAction" method="enterSearch">
+			<result name="success">/WEB-INF/jsp/domain/searchUser.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="searchUserInfoPagination" class="userInfoAction" method="searchUserInfoPagination">
+			<result name="success">/WEB-INF/jsp/domain/searchUser.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+</struts>
