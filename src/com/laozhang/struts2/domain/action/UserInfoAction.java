@@ -42,7 +42,17 @@ public class UserInfoAction extends BaseAction {
 	}
 	
 	public void searchUserInfoPagination() {
-		pagination = new Pagination(getRequest(), "pagination");
+		try {
+			pagination = new Pagination(getRequest(), "pagination");
+			pagination = userInfoService.searchUserInfoPagination(userInfo, pagination);
+			getResponse().setCharacterEncoding("UTF-8");
+			getResponse().setContentType("html/txt");
+			String[] fieldName = {"id","userId","name","userEditBtn"};
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

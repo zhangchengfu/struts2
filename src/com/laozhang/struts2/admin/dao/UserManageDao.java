@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.laozhang.struts2.admin.model.RoleInfo;
 import com.laozhang.struts2.admin.model.UserInfo;
+import com.laozhang.struts2.base.model.Pagination;
 
 public interface UserManageDao {
 	UserInfo findUserById(String id);
@@ -12,4 +13,5 @@ public interface UserManageDao {
 	boolean addUser(UserInfo userInfo);
 	UserInfo searchUserById(Long id);
 	List<RoleInfo> getAllRoleList();
+	Pagination searchUserInfoPagination(Pagination pagination, Map map) throws Exception;
 }

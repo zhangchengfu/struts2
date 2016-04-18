@@ -19,4 +19,23 @@
 		</dynamic>
 	</select>
 	
+	<select id="searchUserInfoPagination">
+		select 
+			u
+		from
+			UserInfo
+		where 
+			1=1
+		<dynamic>
+			<isNotEmpty property="userId">
+				and u.userId like :userId
+			</isNotEmpty>
+		</dynamic>
+		<dynamic>
+			<isNotEmpty property="name">
+				and u.name like :name
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	
 </sqlMap>

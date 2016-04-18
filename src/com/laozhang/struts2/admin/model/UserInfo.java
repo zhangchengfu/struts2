@@ -35,7 +35,18 @@ public class UserInfo extends BaseObject {
 	
 	private String roleDesc;
 	
+	private String userEditBtn = "±à¼­";
 	
+	
+	
+	public String getUserEditBtn() {
+		return userEditBtn;
+	}
+
+	public void setUserEditBtn(String userEditBtn) {
+		this.userEditBtn = userEditBtn;
+	}
+
 	public Long getId()
 	{
 		return id;

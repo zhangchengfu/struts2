@@ -7,6 +7,7 @@ import com.laozhang.struts2.admin.dao.UserManageDao;
 import com.laozhang.struts2.admin.model.RoleInfo;
 import com.laozhang.struts2.admin.model.UserInfo;
 import com.laozhang.struts2.base.dao.impl.BaseDaoImpl;
+import com.laozhang.struts2.base.model.Pagination;
 
 public class UserManageDaoImpl extends BaseDaoImpl implements UserManageDao {
 
@@ -35,6 +36,10 @@ public class UserManageDaoImpl extends BaseDaoImpl implements UserManageDao {
 
 	public UserInfo searchUserById(Long id) {
 		return (UserInfo) findBy(UserInfo.class, "id", id);
+	}
+	
+	public Pagination searchUserInfoPagination(Pagination pagination, Map map) throws Exception {
+		return findPageByCombinedHsql("searchUserInfoPagination", map, pagination);
 	}
 
 }
