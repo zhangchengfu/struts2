@@ -40,7 +40,17 @@ public class UserInfoServiceImpl extends BaseServiceImpl implements
 			map.put("name", "%" + new String(userInfo.getName().trim().getBytes("ISO-8859-1"),"UTF-8") + "%");
 		}
 		
-		return null;
+		return userManageDao.searchUserInfoPagination(pagination, map);
+	}
+	
+	@Override
+	public UserInfo searchUserById(Long id) throws Exception {
+		return userManageDao.searchUserById(id);
+	}
+	
+	@Override
+	public void saveUser(UserInfo userInfo) throws Exception {
+		userManageDao.addUser(userInfo);
 	}
 
 }

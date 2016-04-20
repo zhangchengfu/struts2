@@ -6,4 +6,6 @@ import com.laozhang.struts2.base.service.BaseService;
 
 public interface UserInfoService extends BaseService {
 	Pagination searchUserInfoPagination(UserInfo userInfo, Pagination pagination) throws Exception;
+	UserInfo searchUserById(Long id) throws Exception;
+	void saveUser(UserInfo userInfo) throws Exception;
 }

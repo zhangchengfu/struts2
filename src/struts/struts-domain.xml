@@ -10,5 +10,39 @@
 			<result name="success">/WEB-INF/jsp/domain/searchUser.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="enterEdit" class="userInfoAction" method="enterEdit">
+			<result name="success">/WEB-INF/jsp/domain/editUser.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="editUser" class="userInfoAction" method="editUser">
+			<result name="success" type="redirectAction">
+				<param name="actionName">searchUserInfoPagination</param>
+				<param name="namespace">/domain</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="enterAdd" class="userInfoAction" method="enterAdd">
+			<result name="success">/WEB-INF/jsp/domain/addUser.jsp</result>
+            <result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+	<package name="userJson" extends="json-default" namespace="/userJson"> 
+		<interceptors>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="json" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">warn</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultStack" />
+		<action name="addUser" class="userInfoAction" method="addUser">
+			<result type="json">
+				<param name="includeProperties">result</param>
+			</result>
+		</action>
 	</package>
 </struts>
