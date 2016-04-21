@@ -22,19 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	
 	<script type="text/javascript">
-	function validateName()
-	{
-		var name = $("#name").val();
-		var errorMsg = $("#nameErrorMsg");
-		if(name=='')
-		{
-			errorMsg.html('必填项');
-		}
-		else
-		{
-			errorMsg.html('');
-		}
-	}
 	
 	function validateName()
 	{
@@ -43,6 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(name=='')
 		{
 			errorMsg.html('必填项');
+			return false;
 		}
 		else
 		{
@@ -66,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			else
 			{
 				passwordErrorMsg.html('密码至少六位且只能包含英文字母和数字');
+				return false;
 			}
 			
 			if(passwordConfirm!='')
@@ -77,16 +66,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				else
 				{
 					passwordConfirmErrorMsg.html('两次密码不匹配');
+					return false;
 				}	
 			}
 			else
 			{
 				passwordConfirmErrorMsg.html('必填项');
+				return false;
 			}
 		}
 		else
 		{
 			passwordErrorMsg.html('必填项');
+			return false;
 		}
 	}
 	
@@ -104,11 +96,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			else
 			{
 				errorMsg.html('请输入有效的Email');
+				return false;
 			}	
 		}
 		else
 		{
 			errorMsg.html('必填项');
+			return false;
 		}
 	}
 	
@@ -126,7 +120,82 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			else
 			{
 				errorMsg.html('请输入有效的手机号码');
+				return false;
 			}	
+		}
+		else
+		{
+			errorMsg.html('必填项');
+			return false;
+		}
+	}
+	
+	function save() {
+		if (validateName() && validatePwd() && validateEmail() && validateTel()) {
+			$.ajax({
+				url:"userJson/validateUserId.action",
+				type:'POST',
+				data:{'userId':$("#userId").val()},
+				dataType:'json',
+				success:function(response){
+					var result = response.result;
+					if (result == true) {
+						$.ajax({
+							url:"domain/addUser.action",
+							type:POST,
+							data:$('form:first').serialize();
+							dataType:'json',
+							fuccess:function(response){
+								var result = response.result;
+								if (result != null && result==true) {
+									alert('新增成功');
+									window.location.href = "<%=path%>/domain/enterSearch.action";
+								} else {
+									alert('新增失败');
+								}
+							}
+						});
+					} else  {
+						alert("用户名已被注册过")
+					}
+				}
+			});
+		}
+	}
+	
+	function validateUserId()
+	{
+		var userId = $("#userId").val();
+		var errorMsg = $("#userIdErrorMsg");
+		var reg = /^[a-zA-Z\d]+$/;
+		
+		if(userId!='')
+		{
+			if(reg.test(userId))
+			{
+				errorMsg.html('');
+				$.ajax({
+				 	url:'userJson/validateUserId.action', 
+					type: 'POST',
+					data: {userId:userId}, 
+					dataType:'json',
+					success: function(response)
+					{
+						var result = response.result;
+						if (result==true) {
+							errorMsg.html('');
+						}
+						else
+						{
+							errorMsg.html('用户已存在');
+						}
+					}
+		    	});
+			}
+			else
+			{
+				errorMsg.html('请输入英文字母或数字');
+			}
 		}
 		else
 		{
@@ -134,9 +203,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	}
 	
-	
-	
-	
+	function goBack()
+	{
+		window.location.href = "<%=path%>/domain/enterSearch.action";
+	}
 	
 	</script>
 
@@ -150,32 +220,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<table border="0" width="950" class="form_table" style="margin-left:50px">
     					<tr>
     						<td width="100" class="table_label"><label class="control-label"><span class="star">*</span>用户名：</label></td>
-    						<td width="180"><input type="text" id="userId" name="userId" onblur="validateUserId()" maxlength="20"/></td>
+    						<td width="180"><input type="text" id="userId" name="userInfo.userId" onblur="validateUserId()" maxlength="20"/></td>
     						<td width="120"><div id="userIdErrorMsg" class="msg"></div></td>
 							<td width="120" class="table_label"><label class="control-label"><span class="star">*</span>用户姓名：</label></td>
-							<td width="180"><input type="text" id="name" name="name" onblur="validateName()" maxlength="40"/></td>
+							<td width="180"><input type="text" id="name" name="userInfo.name" onblur="validateName()" maxlength="40"/></td>
 							<td width="120"><div id="nameErrorMsg" class="msg"></div></td>
     					</tr>
     					<tr>
 							<td class="table_label"><label class="control-label"><span class="star">*</span>密码：</label></td>
-							<td><input type="password" id="password" name="password" onblur="validatePwd()"/></td>
+							<td><input type="password" id="password" name="userInfo.password" onblur="validatePwd()"/></td>
 							<td><div id="passwordErrorMsg" class="msg"></div></td>
 							<td class="table_label"><label class="control-label"><span class="star">*</span>确认密码：</label></td>
-							<td><input type="password" id="passwordConfirm" name="passwordConfirm" onblur="validatePwd()"/></td>
+							<td><input type="password" id="passwordConfirm" name="userInfo.passwordConfirm" onblur="validatePwd()"/></td>
 							<td><div id="passwordConfirmErrorMsg" class="msg"></div></td>
 						</tr>
 						<tr>
 							<td class="table_label"><label class="control-label"><span class="star">*</span>邮箱：</label></td>
-							<td><input type="text" id="email" name="email" onblur="validateEmail()"/></td>
+							<td><input type="text" id="email" name="userInfo.email" onblur="validateEmail()"/></td>
 							<td><div id="emailErrorMsg" class="msg"></div></td>
 							<td class="table_label"><label class="control-label"><span class="star">*</span>手机：</label></td>
-							<td><input type="text" id="tel" name="tel" onblur="validateTel()"/></td>
+							<td><input type="text" id="tel" name="userInfo.tel" onblur="validateTel()"/></td>
 							<td><div id="telErrorMsg" class="msg"></div></td>
 						</tr>
 						<tr>
 							<td class="table_label"><label class="control-label"><span class="star">*</span>所属角色：</label></td>
 							<td>
-								<select id="roleId" name="roleId" onchange="searchOrgByRoleId();">
+								<select id="roleId" name="userInfo.roleId" onchange="searchOrgByRoleId();">
 									<c:forEach var="roleInfoList" items="${roleInfoList}" varStatus="status">
 										<option value="<c:out value='${roleInfoList.roleId}'></c:out>" 
 										<c:if test="${roleId==roleInfoList.roleId}">

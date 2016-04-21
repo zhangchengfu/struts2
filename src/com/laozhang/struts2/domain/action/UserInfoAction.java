@@ -1,5 +1,9 @@
 package com.laozhang.struts2.domain.action;
 
+import java.io.PrintWriter;
+import java.security.MessageDigest;
+
+import sun.misc.BASE64Encoder;
 import util.JsonConverter;
 
 import com.laozhang.struts2.admin.model.UserInfo;
@@ -12,8 +16,17 @@ public class UserInfoAction extends BaseAction {
 	private UserInfo userInfo;
 	private Pagination pagination;
 	private Long id;
+	private boolean result;
 	
 	
+	
+	public boolean isResult() {
+		return result;
+	}
+
+	public void setResult(boolean result) {
+		this.result = result;
+	}
 
 	public Long getId() {
 		return id;
@@ -80,5 +93,35 @@ public class UserInfoAction extends BaseAction {
 	
 	public String enterAdd() throws Exception {
 		return SUCCESS;
+	}
+	
+	public String validateUserId() throws Exception {
+		UserInfo info = userInfoService.findUserById(getRequest().getParameter("userId"));
+		if (null != info) {
+			result = false;
+		} else {
+			result = true;
+		}
+		return SUCCESS;
+	}
+	
+	public void addUser() throws Exception {
+		PrintWriter write = getResponse().getWriter();;
+		try {
+			UserInfo u = userInfo;
+			MessageDigest md5;
+			md5 = MessageDigest.getInstance("MD5");
+			BASE64Encoder base64en = new BASE64Encoder();  
+			String pwdMD = base64en.encode(md5.digest(u.getPassword().getBytes("UTF-8")));
+			u.setPassword(pwdMD);
+			userInfoService.saveUser(u);
+			result = true;
+		} catch (Exception e) {
+			result = false;
+		} finally {
+			write.print(result);
+			write.flush();
+			write.close();
+		}
 	}
 }

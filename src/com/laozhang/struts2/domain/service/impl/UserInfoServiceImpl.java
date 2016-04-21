@@ -52,5 +52,10 @@ public class UserInfoServiceImpl extends BaseServiceImpl implements
 	public void saveUser(UserInfo userInfo) throws Exception {
 		userManageDao.addUser(userInfo);
 	}
+	
+	@Override
+	public UserInfo findUserById(String id) throws Exception {
+		return userManageDao.findUserById(id);
+	}
 
 }
