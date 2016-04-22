@@ -9,6 +9,11 @@
  
  	<!-- access-denied-page 无权限访问所跳转的页面 -->
  	<http use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
+ 	
+ 		<!-- 防止用户重复登录 -->
+ 		<session-management invalid-session-url="/timeout.jsp">
+ 			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+ 		</session-management>
  		
  		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
  		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
