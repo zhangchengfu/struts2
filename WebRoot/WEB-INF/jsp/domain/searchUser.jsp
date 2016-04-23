@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		function doSearch() {
-			$("#searchUserInfoGird").flexReload();
+			 $("#searchUserInfoGird").flexReload();
     	}
     	
     	function doReset() {

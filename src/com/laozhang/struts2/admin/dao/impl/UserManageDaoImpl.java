@@ -13,7 +13,7 @@ public class UserManageDaoImpl extends BaseDaoImpl implements UserManageDao {
 
 	public UserInfo findUserById(String id) {
 		List<UserInfo> list = findAllBy(UserInfo.class, "userId", id);
-		return (list == null ? null : list.get(0));
+		return (list == null || list.size() < 1 ? null : list.get(0));
 	}
 
 	public List<RoleInfo> getRoleListByUserId(Map<String, String> map) {

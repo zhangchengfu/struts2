@@ -47,6 +47,7 @@ public class MyUsernamePasswordAuthenticationFilter extends
 			BASE64Encoder base64en = new BASE64Encoder();
 			pwdMD = base64en.encode(md5.digest(password.getBytes("UTF-8")));
 			//pwdMD = Base64.encode(md5.digest(password.getBytes("UTF-8"))).toString();
+			//authRequest = new UsernamePasswordAuthenticationToken(username, pwdMD);
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

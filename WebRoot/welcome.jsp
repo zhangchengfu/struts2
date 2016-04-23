@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%
@@ -27,7 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     welcome <br>
     <sec:authorize ifAnyGranted="ROLE_ADMIN">
-    	<a>用户管理</a>
+    	<%-- <a href="<%=path %>/domain/enterSearch.action">用户管理</a> --%>
+    	<a href="<c:url value='/domain/enterSearch.action'/>">用户管理</a>
     </sec:authorize>
   </body>
 </html>

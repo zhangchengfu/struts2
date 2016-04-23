@@ -4,9 +4,11 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<!-- 开发模式 -->
-	<constant name="struts.devMode" value="true"></constant>
+	<!-- <constant name="struts.devMode" value="true"></constant> -->
 	<!-- 使用简单主题模式 -->
-	<constant name="struts.ui.theme" value="simple"></constant>
+	<!-- <constant name="struts.ui.theme" value="simple"></constant> -->
+	
+	<constant name="struts.action.extension" value="action,do"></constant>
 	
 	<!-- <package name="user" namespace="/user" extends="struts-default">
 		<action name="login" class="com.laozhang.struts2.action.UserAction" method="login">
@@ -18,5 +20,6 @@
 		</action>
 	</package> -->
 	
-	<include file="/struts/struts-admin.xml"></include>
+	<!-- <include file="/struts/struts-admin.xml"></include> -->
+	<include file="/struts/struts-domain.xml"></include>
 </struts>
