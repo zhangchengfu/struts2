@@ -5,6 +5,9 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
+ 	<http pattern="/js/**" security="none"></http>
+ 	<http pattern="/images/**" security="none"></http>
+ 	<http pattern="/css/**" security="none"></http>
 	<http pattern="/index.jsp" security="none" /> 
  
  	<!-- access-denied-page 无权限访问所跳转的页面 -->
@@ -18,7 +21,7 @@
  		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
  		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
  		
- 		<!-- <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> -->
+ 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
  	</http>
  	
  	<!-- 未登录的切入点 -->
@@ -38,7 +41,8 @@
  	
  	<beans:bean id="loginLogAuthenticationSuccessHandler"
  			class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
- 		<beans:property name="defaultTargetUrl" value="/domain/enterSearch.action"></beans:property>
+ 		<!-- <beans:property name="defaultTargetUrl" value="/domain/enterSearch.action"></beans:property> -->
+ 		<beans:property name="defaultTargetUrl" value="/welcome.jsp"></beans:property>
  	</beans:bean>
  	
  	<beans:bean id="simpleUrlAuthenticationFailureHandler"
