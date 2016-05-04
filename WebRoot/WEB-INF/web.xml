@@ -46,7 +46,7 @@
   </filter>
   
   <listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>com.laozhang.struts2.base.spring.ContextLoaderListener</listener-class>
 	</listener>
 	
 	
