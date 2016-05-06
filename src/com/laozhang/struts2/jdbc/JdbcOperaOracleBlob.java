@@ -206,3 +206,12 @@ public class JdbcOperaOracleBlob {
 		}
 	}
 }
+
+/**
+ * JDBC中使用事务
+ * 
+ * Connection.setAutoCommit(false);//开启事务(start transaction)
+ * Connection.rollback();//回滚事务(rollback)
+ * Connection.commit();//提交事务(commit)
+ * 
+ */

@@ -41,6 +41,11 @@ public class JdbcOperaClob {
 			if (num > 0) {
 				System.out.println("插入成功");
 			}
+			//获取数据库自动生成的主键
+			rs = st.getGeneratedKeys();
+			if (rs.next()) {
+				System.out.println(rs.getInt(1));
+			}
 			//关闭流
 			reader.close();
 		} catch (Exception e) {
@@ -97,5 +102,7 @@ public class JdbcOperaClob {
 	5          id int primary key auto_increment,
 	6          resume text
 	7 );*/
+	
+	
 	
 }
